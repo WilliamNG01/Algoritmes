@@ -1,0 +1,15 @@
+C:\Users\WilliamNanfack\Documents\william perso\MesRepositories\Algorithmes\Algorithmes.RechercheTri\bin\Debug\net8.0\Algorithmes.RechercheTri.exe
+C:\Users\WilliamNanfack\Documents\william perso\MesRepositories\Algorithmes\Algorithmes.RechercheTri\bin\Debug\net8.0\Algorithmes.RechercheTri.deps.json
+C:\Users\WilliamNanfack\Documents\william perso\MesRepositories\Algorithmes\Algorithmes.RechercheTri\bin\Debug\net8.0\Algorithmes.RechercheTri.runtimeconfig.json
+C:\Users\WilliamNanfack\Documents\william perso\MesRepositories\Algorithmes\Algorithmes.RechercheTri\bin\Debug\net8.0\Algorithmes.RechercheTri.dll
+C:\Users\WilliamNanfack\Documents\william perso\MesRepositories\Algorithmes\Algorithmes.RechercheTri\bin\Debug\net8.0\Algorithmes.RechercheTri.pdb
+C:\Users\WilliamNanfack\Documents\william perso\MesRepositories\Algorithmes\Algorithmes.RechercheTri\obj\Debug\net8.0\Algorithmes.RechercheTri.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\WilliamNanfack\Documents\william perso\MesRepositories\Algorithmes\Algorithmes.RechercheTri\obj\Debug\net8.0\Algorithmes.RechercheTri.AssemblyInfoInputs.cache
+C:\Users\WilliamNanfack\Documents\william perso\MesRepositories\Algorithmes\Algorithmes.RechercheTri\obj\Debug\net8.0\Algorithmes.RechercheTri.AssemblyInfo.cs
+C:\Users\WilliamNanfack\Documents\william perso\MesRepositories\Algorithmes\Algorithmes.RechercheTri\obj\Debug\net8.0\Algorithmes.RechercheTri.csproj.CoreCompileInputs.cache
+C:\Users\WilliamNanfack\Documents\william perso\MesRepositories\Algorithmes\Algorithmes.RechercheTri\obj\Debug\net8.0\Algorithmes.RechercheTri.sourcelink.json
+C:\Users\WilliamNanfack\Documents\william perso\MesRepositories\Algorithmes\Algorithmes.RechercheTri\obj\Debug\net8.0\Algorithmes.RechercheTri.dll
+C:\Users\WilliamNanfack\Documents\william perso\MesRepositories\Algorithmes\Algorithmes.RechercheTri\obj\Debug\net8.0\refint\Algorithmes.RechercheTri.dll
+C:\Users\WilliamNanfack\Documents\william perso\MesRepositories\Algorithmes\Algorithmes.RechercheTri\obj\Debug\net8.0\Algorithmes.RechercheTri.pdb
+C:\Users\WilliamNanfack\Documents\william perso\MesRepositories\Algorithmes\Algorithmes.RechercheTri\obj\Debug\net8.0\Algorithmes.RechercheTri.genruntimeconfig.cache
+C:\Users\WilliamNanfack\Documents\william perso\MesRepositories\Algorithmes\Algorithmes.RechercheTri\obj\Debug\net8.0\ref\Algorithmes.RechercheTri.dll
