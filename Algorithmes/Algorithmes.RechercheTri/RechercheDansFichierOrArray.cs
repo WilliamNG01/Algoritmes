@@ -59,9 +59,9 @@ namespace Algorithmes.RechercheTri
             string[] arrA = ["a", "e", "e", "e", "b"];
             string[] arrB = ["b", "b", "c", "e", "e", "g"];
 
-            Console.WriteLine(@"Soit les listes suivantes: A[" + string.Join(", ", arrA) + "] et \t B ["+ string.Join(", ", arrB) + "]");
+            Console.WriteLine(@"Soit les listes suivantes: A[" + string.Join(", ", arrA) + "] et \t B [" + string.Join(", ", arrB) + "]");
             Console.WriteLine("voulez vous trouver des caractère commun Oui 'O' ou Non 'N'");
-            
+
             yes = Console.ReadKey().Key == ConsoleKey.O;
             var distinctArrA = arrA.Distinct().ToList();
             var distinctArrB = arrB.Distinct().ToList();
@@ -79,7 +79,7 @@ namespace Algorithmes.RechercheTri
                 text = string.Join(", ", result);
             }
 
-            Console.WriteLine(@"[" + text +"]");
+            Console.WriteLine(@"[" + text + "]");
             Console.WriteLine("voulez vous continuer Oui 'O' ou Non 'N'");
             return Console.ReadKey().Key == ConsoleKey.O;
         }
@@ -114,6 +114,51 @@ namespace Algorithmes.RechercheTri
                 }
                 //await Task.Delay(1000);
             }
+        }
+
+        public static bool DecimalToHexadecimal()
+        {
+            int dividente = 0;
+            Dictionary<int, char> dictionairHexadecimal = new()
+            {
+                { 10,'A'},{ 11,'B'},{ 12,'C'},{ 13,'D'},{ 14,'E'},{ 15,'F'},
+            };
+            Console.WriteLine("/\n\t\tinsert un nombre superieru à zero");
+            var x = Console.ReadLine();
+            if (int.TryParse(x, out dividente) && dividente>0)
+            {
+                Console.WriteLine("bien");
+            }
+            else
+            {
+                Console.WriteLine("vous n'avez pas inserer un nombre decimal");
+                //Environment.Exit(0);
+                return true;
+            }
+            List<string> hexadecimal = new();
+            bool continuer = true;
+
+            var quotient = dividente / 16;
+            var reste = dividente % 16;
+            while (continuer)
+            {
+                if (quotient < 10 && quotient > 0)
+                    hexadecimal.Add(quotient.ToString());
+                //else if (quotient >=16) dividente = quotient;
+                if (reste < 16 && reste >= 10)
+                    hexadecimal.Add(dictionairHexadecimal[reste].ToString());
+                else hexadecimal.Add(reste.ToString());
+
+                if (quotient < 10 && (reste < 16))
+                    continuer = false;
+                quotient = dividente / 16;
+                reste = dividente % 16;
+            }
+            Console.WriteLine("" + string.Join("", hexadecimal));
+
+            Console.WriteLine("voulez vous continuer Oui 'O' ou Non 'N'");
+            return Console.ReadKey().Key == ConsoleKey.O;
+
         }
     }
 }

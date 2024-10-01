@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Algorithmes.RechercheTri")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e196f4db92a64e5444d639e9b3f5609eefa72985")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a674250e1cdf33012e40fd39db8cc6e9db5f420c")]
 [assembly: System.Reflection.AssemblyProductAttribute("Algorithmes.RechercheTri")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Algorithmes.RechercheTri")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
