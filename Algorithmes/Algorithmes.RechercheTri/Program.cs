@@ -1,7 +1,11 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using Algorithmes.RechercheTri;
+using System;
 
 Console.WriteLine("Hello, World!");
+// Création d'une instance de ConsoleWrapper (implémente IConsole)
+IConsole console = new ConsoleWrapper();
+RechercheDansFichierOrArray recherche = new(console);  // Injecter ConsoleWrapper
 
 //algoritme de recherche des X dernière ligne d'un fichier
 //Console.WriteLine("RechercheDansFichier.GetLastXRows");
@@ -11,17 +15,17 @@ Console.WriteLine("Hello, World!");
 //var reponse = Console.ReadKey().Key == ConsoleKey.O; // rechecher n fois
 //while (reponse)
 //{
-//    //reponse = RechercheDansFichierOrArray.GetLastXRows(null, path);
-//    //reponse = RechercheDansFichierOrArray.GetElementDistinct(false);
+//    //reponse = recherche.GetLastXRows(null, path);
+//    //reponse = recherche.GetElementDistinct(false);
 //}
 
-//Task tsk1 = Task.Run(() => RechercheDansFichierOrArray.SayHello("task1 "));
-//Task tsk2 = Task.Run(() => RechercheDansFichierOrArray.SayName("task2 "));
+//Task tsk1 = Task.Run(() => recherche.SayHello("task1 "));
+//Task tsk2 = Task.Run(() => recherche.SayName("task2 "));
 
 //Task.WaitAll(tsk2, tsk1);
 
-//Thread thread1 = new Thread(()=>RechercheDansFichierOrArray.SayHello(onThread: "trd1"));
-//Thread thread2 = new Thread(()=>RechercheDansFichierOrArray.SayName(onThread: "trd2"));
+//Thread thread1 = new Thread(()=>recherche.SayHello(onThread: "trd1"));
+//Thread thread2 = new Thread(()=>recherche.SayName(onThread: "trd2"));
 
 //thread2.Start();
 //thread1.Start();
@@ -33,7 +37,9 @@ Console.WriteLine("voulez vous commencer l'algo decimal to hexadecimal Oui 'o' o
 var reponse = Console.ReadKey().Key == ConsoleKey.O; // rechecher n fois
 while (reponse)
 {
-    reponse = RechercheDansFichierOrArray.DecimalToHexadecimal();
+    var result = recherche.DecimalToHexadecimal();
+    Console.WriteLine("voulez vous continuer Oui 'O' ou Non 'N'");
+    reponse =Console.ReadKey().Key == ConsoleKey.O;
 }
 
 Console.WriteLine("\n\t arréter le programme Oui 'O' ou Non 'N'");

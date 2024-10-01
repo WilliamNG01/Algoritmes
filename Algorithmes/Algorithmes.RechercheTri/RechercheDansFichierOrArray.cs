@@ -8,22 +8,43 @@ using System.Runtime.InteropServices;
 
 namespace Algorithmes.RechercheTri
 {
+    public interface IConsole
+    {
+        string ReadLine();
+        char ReadKey();
+        void WriteLine(string message);
+        void Write(string message);
+    }
+
+    public class ConsoleWrapper : IConsole
+    {
+        public string ReadLine() => Console.ReadLine();
+        public char ReadKey() => ((char)Console.ReadKey().Key);
+        public void WriteLine(string message) => Console.WriteLine(message);
+        public void Write(string message) => Console.WriteLine(message);
+    }
     public class RechercheDansFichierOrArray
     {
-        public static bool GetLastXRows(int? n, string path)
+        private readonly IConsole _console;
+
+        public RechercheDansFichierOrArray(IConsole console)
+        {
+            _console = console ?? throw new ArgumentNullException(nameof(console));
+        }
+        public bool GetLastXRows(int? n, string path)
         {
             int num = 0;
             if (n == null || n == 0)
             {
-                Console.WriteLine("/\n\t\tinsert un nombre de line superieru à zero");
-                var x = Console.ReadLine();
+                _console.WriteLine("/\n\t\tinsert un nombre de line superieru à zero");
+                var x = _console.ReadLine();
                 if (int.TryParse(x, out num))
                 {
-                    Console.WriteLine("bien");
+                    _console.WriteLine("bien");
                 }
                 else
                 {
-                    Console.WriteLine("vous n'avez pasinserer un nombre entier");
+                    _console.WriteLine("vous n'avez pasinserer un nombre entier");
                     Environment.Exit(0);
                 }
             }
@@ -36,33 +57,33 @@ namespace Algorithmes.RechercheTri
                 return Print(rows.Reverse().Take(num).Reverse().ToList());
             else
             {
-                Console.WriteLine("le fichier est vide ou n'existe pas");
+                _console.WriteLine("le fichier est vide ou n'existe pas");
                 return false;
             }
         }
-        public static bool Print(List<string> lastNrow)
+        public bool Print(List<string> lastNrow)
         {
 
             if (lastNrow.Count > 0)
             {
                 foreach (var item in lastNrow)
                 {
-                    Console.WriteLine("  -*-  " + item);
+                    _console.WriteLine("  -*-  " + item);
                 }
             }
-            Console.WriteLine("voulez vous continuer Oui 'O' ou Non 'N'");
-            return Console.ReadKey().Key == ConsoleKey.O;
+            _console.WriteLine("voulez vous continuer Oui 'O' ou Non 'N'");
+            return _console.ReadKey().ToString() == ConsoleKey.O.ToString();
         }
 
-        public static bool GetElementDistinct(bool yes)
+        public bool GetElementDistinct(bool yes)
         {
             string[] arrA = ["a", "e", "e", "e", "b"];
             string[] arrB = ["b", "b", "c", "e", "e", "g"];
 
-            Console.WriteLine(@"Soit les listes suivantes: A[" + string.Join(", ", arrA) + "] et \t B [" + string.Join(", ", arrB) + "]");
-            Console.WriteLine("voulez vous trouver des caractère commun Oui 'O' ou Non 'N'");
+            _console.WriteLine(@"Soit les listes suivantes: A[" + string.Join(", ", arrA) + "] et \t B [" + string.Join(", ", arrB) + "]");
+            _console.WriteLine("voulez vous trouver des caractère commun Oui 'O' ou Non 'N'");
 
-            yes = Console.ReadKey().Key == ConsoleKey.O;
+            yes = _console.ReadKey().ToString() == ConsoleKey.O.ToString();
             var distinctArrA = arrA.Distinct().ToList();
             var distinctArrB = arrB.Distinct().ToList();
             string text = "";
@@ -79,36 +100,36 @@ namespace Algorithmes.RechercheTri
                 text = string.Join(", ", result);
             }
 
-            Console.WriteLine(@"[" + text + "]");
-            Console.WriteLine("voulez vous continuer Oui 'O' ou Non 'N'");
-            return Console.ReadKey().Key == ConsoleKey.O;
+            _console.WriteLine(@"[" + text + "]");
+            _console.WriteLine("voulez vous continuer Oui 'O' ou Non 'N'");
+            return _console.ReadKey().ToString() == ConsoleKey.O.ToString();
         }
 
         public static int count = 0;
         public static readonly object locker = new();
 
-        public static void SayHello(string onThread)
+        public void SayHello(string onThread)
         {
-            //Console.WriteLine("SayHello {0}", onThread);
+            //_console.WriteLine("SayHello {0}", onThread);
             while (count < 10)
             {
                 lock (locker)
                 {
-                    Console.Write("Salut ");
+                    _console.Write("Salut ");
                     count++;
                     Thread.Sleep(1000);
                 }
                 //await Task.Delay(1000);
             }
         }
-        public static void SayName(string onThread)
+        public void SayName(string onThread)
         {
-            //Console.WriteLine("SayName {0}", onThread);
+            //_console.WriteLine("SayName {0}", onThread);
             while (count < 10)
             {
                 lock (locker)
                 {
-                    Console.Write("William ");
+                    _console.Write("William ");
                     count++;
                     Thread.Sleep(1000);
                 }
@@ -116,48 +137,56 @@ namespace Algorithmes.RechercheTri
             }
         }
 
-        public static bool DecimalToHexadecimal()
+        public string DecimalToHexadecimal()
         {
-            int dividente = 0;
+            int nombre = 0;
+
+            // Convertir le nombre signé en entier non signé
+            uint dividente = 0;  // "unchecked" pour éviter le débordement
+
             Dictionary<int, char> dictionairHexadecimal = new()
             {
                 { 10,'A'},{ 11,'B'},{ 12,'C'},{ 13,'D'},{ 14,'E'},{ 15,'F'},
             };
-            Console.WriteLine("/\n\t\tinsert un nombre superieru à zero");
-            var x = Console.ReadLine();
-            if (int.TryParse(x, out dividente) && dividente>0)
+            _console.WriteLine("/\n\t\tinsert un nombre superieru à zero");
+            var x = _console.ReadLine();
+            if (int.TryParse(x, out nombre) && nombre>0)
             {
-                Console.WriteLine("bien");
+                dividente = unchecked((uint)nombre);
+                _console.WriteLine("bien");
             }
             else
             {
-                Console.WriteLine("vous n'avez pas inserer un nombre decimal");
-                //Environment.Exit(0);
-                return true;
+                if(nombre == 0) { return "0"; }
+                else
+                { 
+                    // Gestion des nombres négatifs en utilisant le complément à deux
+                    if (nombre < 0)
+                    {
+                        dividente = unchecked((uint)nombre);
+                    }
+                }
             }
             List<string> hexadecimal = new();
             bool continuer = true;
 
-            var quotient = dividente / 16;
-            var reste = dividente % 16;
             while (continuer)
             {
-                if (quotient < 10 && quotient > 0)
-                    hexadecimal.Add(quotient.ToString());
-                //else if (quotient >=16) dividente = quotient;
-                if (reste < 16 && reste >= 10)
-                    hexadecimal.Add(dictionairHexadecimal[reste].ToString());
+                var quotient = dividente / 16;
+                var reste = dividente % 16;
+
+                if (reste >= 10) hexadecimal.Add(dictionairHexadecimal[(int)reste].ToString());
+                    
                 else hexadecimal.Add(reste.ToString());
 
-                if (quotient < 10 && (reste < 16))
+                dividente = quotient;
+                if (quotient ==0)
                     continuer = false;
-                quotient = dividente / 16;
-                reste = dividente % 16;
             }
-            Console.WriteLine("" + string.Join("", hexadecimal));
+            hexadecimal.Reverse();
+            _console.WriteLine("" + string.Join("", hexadecimal));
 
-            Console.WriteLine("voulez vous continuer Oui 'O' ou Non 'N'");
-            return Console.ReadKey().Key == ConsoleKey.O;
+            return string.Join("", hexadecimal);
 
         }
     }
