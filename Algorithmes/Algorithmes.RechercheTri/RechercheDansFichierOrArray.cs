@@ -75,7 +75,7 @@ namespace Algorithmes.RechercheTri
             return _console.ReadKey().ToString() == ConsoleKey.O.ToString();
         }
 
-        public bool GetElementDistinct(bool yes)
+        public string GetElementDistinct(bool yes)
         {
             string[] arrA = ["a", "e", "e", "e", "b"];
             string[] arrB = ["b", "b", "c", "e", "e", "g"];
@@ -83,7 +83,7 @@ namespace Algorithmes.RechercheTri
             _console.WriteLine(@"Soit les listes suivantes: A[" + string.Join(", ", arrA) + "] et \t B [" + string.Join(", ", arrB) + "]");
             _console.WriteLine("voulez vous trouver des caractère commun Oui 'O' ou Non 'N'");
 
-            yes = _console.ReadKey().ToString() == ConsoleKey.O.ToString();
+            yes = _console.ReadKey().ToString().ToLower() == ConsoleKey.O.ToString().ToLower();
             var distinctArrA = arrA.Distinct().ToList();
             var distinctArrB = arrB.Distinct().ToList();
             string text = "";
@@ -92,17 +92,20 @@ namespace Algorithmes.RechercheTri
                 //utilisation des HashSet pour la performance; dans les cas de tableaux volumineux et dont il y'a necessité d'y accéder continuellement
                 HashSet<string> plusLongArray = new(distinctArrB);
                 var result = distinctArrA.Intersect(plusLongArray);
-                text = string.Join(", ", result);
+                text = string.Join(", ", result.Order().ToList());
+                return @"[" + text + ", " + text + "]";
             }
             else
             {
-                var result = distinctArrB.Union(distinctArrA);
-                text = string.Join(", ", result);
+                var result1 = distinctArrB.Except(distinctArrA);
+                var result2 = distinctArrA.Except(distinctArrB);
+
+                var result = result1.Union(result2);
+                text = string.Join(", ", result.Order().ToList());
             }
 
             _console.WriteLine(@"[" + text + "]");
-            _console.WriteLine("voulez vous continuer Oui 'O' ou Non 'N'");
-            return _console.ReadKey().ToString() == ConsoleKey.O.ToString();
+            return @"[" + text + "]";
         }
 
         public static int count = 0;

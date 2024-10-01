@@ -3,6 +3,7 @@ using Algorithmes.RechercheTri;
 using System;
 
 Console.WriteLine("Hello, World!");
+
 // Création d'une instance de ConsoleWrapper (implémente IConsole)
 IConsole console = new ConsoleWrapper();
 RechercheDansFichierOrArray recherche = new(console);  // Injecter ConsoleWrapper
